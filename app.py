@@ -95,15 +95,28 @@ class TTT:
     def check_for_win(self):
         """See if there is a victory
         We do this by seeing if any row, column, or diagonal has 3 of the same tokens.
+        These are defined in the list 'win_conditions'.
         """
         if not self.is_winnable():
             return
 
         i = self.lastPos[0]
         j = self.lastPos[1]
-        if self.board.iloc[i].value_counts().max() == 3 or self.board.iloc[:, j].value_counts().max() == 3:
-            print('Game Over')
-            self.gameOver = True
+
+        win_conditions = [
+            self.board.iloc[i].value_counts().max() == 3,  # win by row
+            self.board.iloc[:, j].value_counts().max() == 3,  # win by col
+            pd.Series(np.append(self.diags[0], -1)).value_counts().values[0] == 3,  # win by diag 0 - append a -1 to the np array in case we have all NaN
+            pd.Series(np.append(self.diags[1], -1)).value_counts().values[0] == 3,  # win by diag 1
+        ]
+        for x in win_conditions:
+            if x:
+                self.game_is_won()
+
+    def game_is_won(self):
+        """The game has been won. """
+        print("{0} Wins ".format(self.lastToken))
+        self.gameOver = True
 
     def play_game(self):
         while self.n_open_cells > 0 and not self.gameOver:
