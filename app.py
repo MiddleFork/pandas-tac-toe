@@ -76,7 +76,7 @@ class TTT:
         print("Available cells are: {0}".format(self.arr_open_cells))
         while True:
             x = input('Cell? ')
-            if (x.isdigit() and int(x) in ttt.arr_open_cells):
+            if (x.isdigit() and int(x) in self.arr_open_cells):
                 return int(x)
             else:
                 continue
