@@ -2,6 +2,18 @@
 
 A proof-of-concept implementation of Tic-Tac-Toe in Pandas and Numpy
 
+To play:
+  - command line:
+    
+    `python app.py`
+
+  - interpreter:
+    ~~~~ 
+    from app import TTT
+    ttt = TTT()
+    ttt.play_game() 
+    ~~~~
+    
 TODO:
   
   - Tests
