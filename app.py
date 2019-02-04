@@ -1,9 +1,19 @@
+"""MiddleFork/pandas_tac_toe
+
+A pandas/numpy implementation of tic-tac-toe proof of concept
+
+"""
 import numpy as np
 import pandas as pd
 from pandas.api.types import CategoricalDtype
 
 
 class TTT:
+    """The main tic-tac-toe class,  consisting of the 3x3 board implemented as a pandas DataFrame,
+    as well as methods to play the game, interact with the board, check for victory, and declare a winner.
+
+    """
+
     def __init__(self):
         self.gameOver = False
         self.lastToken = None
